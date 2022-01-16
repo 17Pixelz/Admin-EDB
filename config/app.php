@@ -41,6 +41,12 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'token' => null,
+
+    'url'   => 'localhost:4200/api/v1/',
+
+    'auth_url'  => 'localhost:4200/api/auth/',
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
