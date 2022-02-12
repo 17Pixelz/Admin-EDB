@@ -40,6 +40,13 @@
                                             <a class="d-block" href="{{ route('client') }}"><button type="button" class="btn btn-info">Ajouter client</button></a>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Type du transfert :</label><br>
+                                            <input type="radio" name="type" value="Client"> Compte Client<br>
+                                            <input type="radio" name="type" value="Agent"> Espece<br>
+                                        </div>
+                                    </div>
                                 </fieldset>
 
                                 <fieldset class="border border-dark p-3 mt-4">

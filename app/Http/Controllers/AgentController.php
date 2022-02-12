@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class AgentController extends Controller
 {
     public function transferts(){
-        $response = load_data('transfert/transfertsagent/'.session('id'));
+        $response = load_data('transfert/all');
 
 
         $data = json_decode($response->getBody()->getContents());
-        return view('pages.tables',[
+        return view('pages.tables', [
             'data' => $data->data
         ]);
     }
@@ -73,6 +73,7 @@ class AgentController extends Controller
             'frais' => ['required'],
             'delai' => ['required'],
             'motif' => ['required'],
+            'type'  => ['required']
         ]);
 
         $data = [
@@ -93,7 +94,12 @@ class AgentController extends Controller
             "motif"=>$request->motif
         ];
 
-        post_data('transfert/newtransactionbyagentacc',$data);
+        if($request->type == "Agent"){
+            $link = "transfert/newtransactionbyagentacc";
+        }else{
+            $link = "transfert/newtransactionbyclientacc";
+        }
+        post_data($link,$data);
 
         echo "<script>setTimeout(function(){ window.location.href = '/agent'; }, 3000);</script>";
         return view('pages.notifications');

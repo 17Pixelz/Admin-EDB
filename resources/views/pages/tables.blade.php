@@ -89,10 +89,7 @@
                                                                 <option value="2">Servie</option>
                                                                 <option value="3">Extourné</option>
                                                                 <option value="4">Restitué</option>
-                                                                <option value="5">Bloqué</option>
-                                                                <option value="6">debloqué a servir</option>
                                                                 <option value="7">payé</option>
-                                                                <option value="8">en déshérence</option>
                                                             </select>
                                                         </div>
                                                     </div>

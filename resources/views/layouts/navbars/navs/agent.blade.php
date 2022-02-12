@@ -29,7 +29,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="@if(\Request::route()->getName() == "transfert") font-weight-bold @endif" href="{{ route('transfert') }}">
-                        Ajouter une transfert
+                        Ajouter un transfert
                     </a>
                 </li>
             </ul>
