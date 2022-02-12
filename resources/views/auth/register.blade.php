@@ -32,7 +32,7 @@
                 <div class="description">
                     <h3 class="info-title">{{ _('Built Audience') }}</h3>
                     <p class="description">
-                        {{ _('There is also a Fully Customizable CMS Admin Dashboard for this product.') }}
+                        {{ _('There is also a Fully Customizable CMS UserType Dashboard for this product.') }}
                     </p>
                 </div>
             </div>

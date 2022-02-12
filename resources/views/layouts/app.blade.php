@@ -7,10 +7,10 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'White Dashboard') }}</title>
+        <title>{{ $title }}</title>
         <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets') }}/img/apple-icon.png">
-        <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/favicon.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://icon-library.com/images/money-transfer-icon/money-transfer-icon-16.jpg">
+        <link rel="icon" type="image/png" href="https://icon-library.com/images/money-transfer-icon/money-transfer-icon-16.jpg">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -19,19 +19,23 @@
         <!-- CSS -->
         <link href="{{ asset('assets') }}/css/white-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('assets') }}/css/theme.css" rel="stylesheet" />
+        <style>
+            .required:after {
+                content:" *";
+                color: red;
+            }
+        </style>
     </head>
     <body class="white-content {{ $class ?? '' }}">
-        @auth()
-            <div class="wrapper">
-                    @include('layouts.navbars.sidebar')
-                <div class="main-panel">
-                    @include('layouts.navbars.navbar')
-
+        @if(session('token') != null)
+            @include('layouts.navbars.navbar')
+            <div class="wrapper wrapper-full-page">
+                <div class="full-page {{ $contentClass ?? '' }}">
                     <div class="content">
-                        @yield('content')
+                        <div class="container-fluid">
+                            @yield('content')
+                        </div>
                     </div>
-
-                    @include('layouts.footer')
                 </div>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -46,44 +50,10 @@
                             @yield('content')
                         </div>
                     </div>
-                    @include('layouts.footer')
                 </div>
             </div>
-        @endauth
-        <div class="fixed-plugin">
-            <div class="dropdown show-dropdown">
-                <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"> </i>
-                </a>
-                <ul class="dropdown-menu">
-                <li class="header-title"> Sidebar Background</li>
-                <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <div class="badge-colors text-center">
-                        <span class="badge filter badge-primary active" data-color="primary"></span>
-                        <span class="badge filter badge-info" data-color="blue"></span>
-                        <span class="badge filter badge-success" data-color="green"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                    </a>
-                </li>
-                <li class="button-container">
-                    <a href="https://www.creative-tim.com/product/white-dashboard-laravel" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-                    <a href="https://white-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block btn-round">
-                    Documentation
-                    </a>
-                </li>
-                <li class="header-title">Thank you for 95 shares!</li>
-                <li class="button-container text-center">
-                    <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-                    <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-                    <br>
-                    <br>
-                    <a class="github-button" href="https://github.com/creativetimofficial/white-dashboard-laravel" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-                </li>
-                </ul>
-            </div>
-        </div>
+        @endif
+        <li class="button-container">
         <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
         <script src="{{ asset('assets') }}/js/core/bootstrap.min.js"></script>
@@ -92,7 +62,7 @@
         <!-- Place this tag in your head or just before your close body tag. -->
         {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
         <!-- Chart JS -->
-        {{-- <script src="{{ asset('white') }}/js/plugins/chartjs.min.js"></script> --}}
+        <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
         <!--  Notifications Plugin    -->
         <script src="{{ asset('assets') }}/js/plugins/bootstrap-notify.js"></script>
 

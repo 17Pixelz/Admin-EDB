@@ -6,6 +6,7 @@ use App\Models\Token;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use phpDocumentor\Reflection\Utils;
 
 class AuthController extends Controller
 {
@@ -15,30 +16,40 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function loginPost(){
+    public function loginPost(Request $request){
         $client = new Client();
         $params = [
-            'username'  => "ytouama",
-            'password'  => "0645487765"
+            'username'  => $request->username,
+            'password'  => $request->password
         ];
 
-        $response = $client->request("POST", config('app.auth_url').'signin', [
-            'json'      =>  $params,
-            'verify'    =>  false
-        ]);
-
-//        config(['token' => json_decode($response->getBody())->accessToken]);
-        session(['token' => json_decode($response->getBody())->accessToken]);
+        try{
+            $response = $client->request("POST", config('app.auth_url').'signin', [
+                'json'          =>  $params,
+                'verify'        =>  false,
+                'exceptions'    =>  false,
+            ]);
+            session(['role' => json_decode($response->getBody())->role]);
+            session(['username' => json_decode($response->getBody())->username]);
+            session(['id' => json_decode($response->getBody())->id]);
+            session(['token' => json_decode($response->getBody())->accessToken]);
+            if (session('role') == "admin"){
+                return redirect(route('dashboard'));
+            }else {
+                return redirect(route('agent'));
+            }
+        }catch (\Exception $e){
+            session()->flash('login','The data you provided is wrong');
+        }
 
         return view('auth.login');
     }
 
-    public function register(){
-        return view('auth.register');
-    }
 
-    public function registerPost(){
-        return view('auth.register');
+    public function logout(){
+        session(['token' => null]);
+        session(['role' => null]);
+        return redirect(route('login'));
     }
 
 

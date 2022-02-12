@@ -43,9 +43,9 @@ return [
 
     'token' => null,
 
-    'url'   => 'localhost:4200/api/v1/',
+    'api_url'   => 'localhost:8082/',
 
-    'auth_url'  => 'localhost:4200/api/auth/',
+    'auth_url'  => 'localhost:8082/api/auth/',
 
     /*
     |--------------------------------------------------------------------------
