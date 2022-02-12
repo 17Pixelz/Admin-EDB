@@ -25,6 +25,9 @@
                                     Etat
                                 </th>
                                 <th>
+                                    Type de transfert
+                                </th>
+                                <th>
                                     Client
                                 </th>
                                 <th>
@@ -52,6 +55,9 @@
                                     </td>
                                     <td>
                                         {{ $trasnfert->etat }}
+                                    </td>
+                                    <td>
+                                        {{ "Espece" ? $trasnfert->typeTransfert == "TransfertparAgent" : "Compte client"  }}
                                     </td>
                                     <td>
                                         {{ $trasnfert->client->nomclient }} {{ $trasnfert->client->prenomClient }}
