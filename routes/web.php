@@ -23,10 +23,10 @@ Route::middleware('token')->group(function (){
     Route::middleware('role:admin')->group(function (){
         Route::get('/', [ HomeController::class, 'index'])->name('dashboard');
 
+        Route::get('/add/agent', [ HomeController::class, 'addAgent'])->name('add.agent');
+        Route::post('/add/agent', [ HomeController::class, 'addAgentPost'])->name('add.agent.post');
         Route::prefix('list')->name('list.')->group(function(){
-            Route::get('clients', [ ListingController::class, 'clients'])->name('clients');
-            Route::get('comptes', [ ListingController::class, 'comptes'])->name('comptes');
-            Route::get('transferts', [ ListingController::class, 'transferts'])->name('transferts');
+            Route::get('agent', [ HomeController::class, 'agents'])->name('agents');
         });
     });
 

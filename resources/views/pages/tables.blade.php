@@ -57,7 +57,7 @@
                                         {{ $trasnfert->etat }}
                                     </td>
                                     <td>
-                                        {{ "Espece" ? $trasnfert->typeTransfert == "TransfertparAgent" : "Compte client"  }}
+                                        @if($trasnfert->typeTransfert == "TransfertparAgent")  Espece @else Compte client @endif
                                     </td>
                                     <td>
                                         {{ $trasnfert->client->nomclient }} {{ $trasnfert->client->prenomClient }}

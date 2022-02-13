@@ -16,6 +16,23 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
         <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="@if(\Request::route()->getName() == "dashboard") font-weight-bold @endif" href="{{ route('dashboard') }}">
+                        Liste des transferts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="@if(\Request::route()->getName() == "list.agents") font-weight-bold @endif" href="{{ route('list.agents') }}">
+                        Liste des agents
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="@if(\Request::route()->getName() == "add.agent") font-weight-bold @endif" href="{{ route('add.agent') }}">
+                        Ajouter un agent
+                    </a>
+                </li>
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
